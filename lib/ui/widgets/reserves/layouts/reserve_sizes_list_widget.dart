@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mebex_0_1_0/ui/resources/resources.dart';
 import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
 import 'package:mebex_0_1_0/ui/theme/app_input_decorations.dart';
 

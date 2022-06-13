@@ -4,7 +4,6 @@ import 'package:mebex_0_1_0/ui/theme/app_button_style.dart';
 import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
 import 'package:mebex_0_1_0/ui/theme/app_input_decorations.dart';
 import 'package:mebex_0_1_0/ui/theme/app_text_styles.dart';
-import 'package:mebex_0_1_0/ui/widgets/reserves/layouts/reserves_bottom_navigation_bar.dart';
 
 class ReservesCardScreen extends StatelessWidget {
   const ReservesCardScreen({Key? key}) : super(key: key);
@@ -30,7 +29,6 @@ class ReservesCardScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: ReservesBottomNavigationBar(),
     );
   }
 }

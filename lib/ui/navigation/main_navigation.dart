@@ -4,7 +4,8 @@ import 'package:mebex_0_1_0/ui/widgets/primary/auth/auth_screen.dart';
 import 'package:mebex_0_1_0/ui/widgets/primary/home/home_screen.dart';
 import 'package:mebex_0_1_0/ui/widgets/primary/reg/main_reg_screen.dart';
 import 'package:mebex_0_1_0/ui/widgets/primary/reg/number_check_reg_screen.dart';
-import 'package:mebex_0_1_0/ui/widgets/reserves/main/reserves_main_screen.dart';
+import 'package:mebex_0_1_0/ui/widgets/reserves/main/reserves_screen.dart';
+import 'package:mebex_0_1_0/ui/widgets/reserves/new_reserve/new_reserve_screen.dart';
 import 'package:mebex_0_1_0/ui/widgets/reserves/reserves_card/reserves_card_screen.dart';
 
 abstract class MainNavigationRouteNames {
@@ -15,6 +16,7 @@ abstract class MainNavigationRouteNames {
   static const reserves_main = '/reserves_main';
   static const reserves_card = '/reserves_card';
   static const calculators_main = '/calculators_main';
+  static const new_reserve = '/reserves_main/new_reserve';
 }
 
 class MainNavigation {
@@ -27,10 +29,12 @@ class MainNavigation {
     MainNavigationRouteNames.reserves_main:  (context) => const ReservesMainScreenWidget(),
     MainNavigationRouteNames.reserves_card:  (context) => const ReservesCardScreen(),
     MainNavigationRouteNames.calculators_main:  (context) => const CalculatorsMainScreenWidget(),
+    MainNavigationRouteNames.new_reserve:  (context) => const NewReserveScreen(),
   };
 
   Route<Object>? onGeneratedRoute(RouteSettings settings) {
     // switch (settings.name) {
+
     //   case MainNavigationRouteNames.tasks:
     //     final configuration = settings.arguments as TaskWidgetConfiguration;
     //     return MaterialPageRoute(builder: (context) {

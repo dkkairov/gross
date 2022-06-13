@@ -1,54 +1,195 @@
 import 'package:flutter/material.dart';
+import 'package:mebex_0_1_0/ui/resources/resources.dart';
 import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
-import 'package:mebex_0_1_0/ui/widgets/reserves/layouts/reserves_bottom_navigation_bar.dart';
-import 'package:mebex_0_1_0/ui/widgets/reserves/layouts/reserves_list_widget.dart';
+import 'package:mebex_0_1_0/ui/theme/app_input_decorations.dart';
 
-class ReservesMainScreenWidget extends StatefulWidget {
-  const ReservesMainScreenWidget({Key? key}) : super(key: key);
+class Reserve {
+  final String imageName;
+  final String reservesType;
+  final String reservesName;
+  final String reservesSize;
+  final String sellerName;
 
-  @override
-  State<ReservesMainScreenWidget> createState() => _ReservesMainScreenWidgetState();
+  Reserve({
+    required this.imageName,
+    required this.reservesType,
+    required this.reservesName,
+    required this.reservesSize,
+    required this.sellerName,
+
+  });
 }
 
-class _ReservesMainScreenWidgetState extends State<ReservesMainScreenWidget> {
-  int _selectedTab = 0;
+class ReservesMainScreen extends StatefulWidget {
 
-  void onSelectTab(int index) {
-    if (_selectedTab == index) return;
-    setState(() {
-      _selectedTab = index;
-    });
+  ReservesMainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ReservesMainScreen> createState() => _ReservesMainScreenState();
+}
+
+class _ReservesMainScreenState extends State<ReservesMainScreen> {
+  final _reserves = [
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+    Reserve(
+        imageName: AppImages.dubNebraska,
+        reservesType: 'ЛДСП',
+        reservesName: 'дуб Небраска',
+        reservesSize: '500 х 300 - 2 шт',
+        sellerName: 'Иван И.'
+    ),
+
+  ];
+
+  var _filteredReserves = <Reserve> [];
+
+  final _searchController = TextEditingController();
+
+  void _searchMovies () {
+    final query = _searchController.text;
+    if (query.isNotEmpty) {
+      _filteredReserves = _reserves.where((Reserve movie){
+        return movie.reservesName.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    } else {
+      _filteredReserves = _reserves;
+    }
+    setState(() {});
   }
 
+  @override
+  void initState() {
+    super.initState();
+
+    _filteredReserves = _reserves;
+    _searchController.addListener(_searchMovies);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
-        centerTitle: true,
-        title: Text('Материалы'),
-        actions: [
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: TextButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.filter_list_alt, color: AppColors.mainWhite,),
-              label: Text('Фильтр', style: TextStyle(
-                color: AppColors.mainWhite,
-              ),),
-
+    return Stack(
+      children: [
+        ListView.builder(
+            padding: EdgeInsets.only(top: 75),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            itemCount: _filteredReserves.length,
+            itemExtent: 100,
+            itemBuilder: (BuildContext context, int index) {
+              final reserve = _filteredReserves[index];
+              return Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: BoxDecoration(
+                        color: AppColors.mainWhite,
+                        border: Border.symmetric(
+                            horizontal: BorderSide(
+                                color: AppColors.mainGrey.withOpacity(0.3)
+                            )
+                        )
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Row(
+                      children: [
+                        Image(image: AssetImage(reserve.imageName)),
+                        SizedBox(width: 15,),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 20,),
+                              Text(
+                                reserve.reservesName + ' (' + reserve.reservesType + ')',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 5,),
+                              Text(
+                                reserve.reservesSize,
+                                style: TextStyle(color: Colors.grey),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 20,),
+                              Text(
+                                reserve.sellerName,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                      ],
+                    ),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {Navigator.of(context).pushNamed("/reserves_card");},
+                    ),
+                  )
+                ],
+              );
+            }),
+        Column(
+          children: [
+            TextField(
+              controller: _searchController,
+              decoration: AppInputDecoration.baseInputStyle.copyWith(
+                prefixIcon: Icon(Icons.search),
+                labelText: 'Поиск по названию',
+              ),
             ),
-          ),
-        ],
-      ),
-      body: IndexedStack(
-        index: _selectedTab,
-        children: [
-          ReservesListWidget(),
-        ],
-      ),
-      bottomNavigationBar: ReservesBottomNavigationBar(),
+            Container(
+              height: 2,
+              color: AppColors.mainLightGrey,
+            )
+          ],
+        ),
+      ],
     );
   }
 }
