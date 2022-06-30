@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mebex_0_1_0/domain/entities/theme.dart';
 import 'package:mebex_0_1_0/ui/navigation/main_navigation.dart';
+import 'package:provider/provider.dart';
+
 
 class MyApp extends StatelessWidget {
-  static final mainNavigation = MainNavigation();
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Mebex',
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.mainRed,
-        ),
-        scaffoldBackgroundColor: AppColors.mainLightGrey,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.mainRed,
-          unselectedItemColor: AppColors.mainGrey,
-        ),
-      ),
-      initialRoute: mainNavigation.initialRoute,
-      routes: mainNavigation.routes,
-      onGenerateRoute: mainNavigation.onGeneratedRoute,
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        // AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('ru', ''),
+      ],
+      initialRoute: MainNavigationRouteNames.auth,
+      routes: MainNavigation.routes,
+      onGenerateRoute: MainNavigation.onGeneratedRoute,
+      theme: Provider.of<ThemeModel>(context).currentTheme,
     );
   }
 }
