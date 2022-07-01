@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mebex_0_1_0/ui/theme/app_button_style.dart';
-import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
-import 'package:mebex_0_1_0/ui/theme/app_input_decorations.dart';
-import 'package:mebex_0_1_0/ui/theme/app_text_styles.dart';
+import 'package:mex/ui/theme/app_button_style.dart';
+import 'package:mex/ui/theme/app_colors.dart';
+import 'package:mex/ui/theme/app_input_decorations.dart';
+import 'package:mex/ui/theme/app_text_styles.dart';
 
 class AuthScreenWidget extends StatefulWidget {
   const AuthScreenWidget({Key? key}) : super(key: key);
@@ -33,17 +33,17 @@ class _LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         _inputLoginFormWidget(),
       ],
     );
   }
 }
-
 
 class _inputLoginFormWidget extends StatefulWidget {
   const _inputLoginFormWidget({Key? key}) : super(key: key);
@@ -57,8 +57,7 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
   final _passwordTextController = TextEditingController();
 
   final UsNumberTextInputFormatter _phoneNumberFormatter =
-  UsNumberTextInputFormatter();
-
+      UsNumberTextInputFormatter();
 
   String? errorText = null;
 
@@ -83,21 +82,22 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
     print('Reset password');
   }
 
-
   @override
   Widget build(BuildContext context) {
     final errorText = this.errorText;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(errorText != null) ... [
+        if (errorText != null) ...[
           Text(
             errorText,
             style: TextStyle(
               color: AppColors.mainRed,
             ),
           ),
-          SizedBox(height: 20,)
+          SizedBox(
+            height: 20,
+          )
         ],
         Container(
           child: Column(
@@ -118,14 +118,15 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
                   _phoneNumberFormatter,
                 ],
               ),
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
               TextField(
                 controller: _passwordTextController,
                 style: AppTextStyle.baseInputTextStyle,
                 decoration: AppInputDecoration.baseInputStyle.copyWith(
                   labelText: 'Пароль',
                 ),
-
                 obscureText: true,
               ),
             ],
@@ -137,23 +138,27 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: double.infinity, minHeight: 55),
+                constraints: const BoxConstraints(
+                    minWidth: double.infinity, minHeight: 55),
                 child: ElevatedButton(
                     onPressed: _auth,
                     style: AppButtonStyle.mainElevatedButton,
-                    child: Text('ВОЙТИ')
-                ),
+                    child: Text('ВОЙТИ')),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               ConstrainedBox(
-                constraints: const BoxConstraints(minWidth: double.infinity, minHeight: 55),
+                constraints: const BoxConstraints(
+                    minWidth: double.infinity, minHeight: 55),
                 child: ElevatedButton(
                     onPressed: _reg,
                     style: AppButtonStyle.addElevatedButton,
-                    child: Text('РЕГИСТРАЦИЯ')
-                ),
+                    child: Text('РЕГИСТРАЦИЯ')),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               TextButton(
                   onPressed: _resetPassword,
                   style: AppButtonStyle.mainTextButton,
@@ -165,4 +170,3 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
     );
   }
 }
-

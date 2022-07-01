@@ -1,4 +1,4 @@
-package com.example.mebex_0_1_0
+package com.example.mex
 
 import io.flutter.embedding.android.FlutterActivity
 

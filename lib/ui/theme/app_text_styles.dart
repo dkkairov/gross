@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mebex_0_1_0/ui/theme/app_colors.dart';
+import 'package:mex/ui/theme/app_colors.dart';
 
 abstract class AppTextStyle {
   static TextStyle baseInputTextStyle = TextStyle(
