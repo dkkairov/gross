@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mex/ui/navigation/main_navigation.dart';
 import 'package:mex/ui/theme/app_button_style.dart';
 import 'package:mex/ui/theme/app_colors.dart';
 import 'package:mex/ui/theme/app_input_decorations.dart';
@@ -67,7 +68,7 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
 
     if (login == '') {
       errorText = null;
-      Navigator.of(context).pushReplacementNamed('/home');
+      Navigator.pushReplacementNamed(context, MainNavigationRouteNames.home);
     } else {
       errorText = 'Неправильный логин';
     }
@@ -75,7 +76,7 @@ class _formWidgetState extends State<_inputLoginFormWidget> {
   }
 
   void _reg() {
-    Navigator.of(context).pushReplacementNamed('/reg');
+    Navigator.pushReplacementNamed(context, MainNavigationRouteNames.reg);
   }
 
   void _resetPassword() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mex/ui/navigation/main_navigation.dart';
 import 'package:mex/ui/theme/app_colors.dart';
 
 class HomeScreenWidget extends StatelessWidget {
@@ -69,7 +70,8 @@ class _HomeServicesWidget extends StatelessWidget {
                   flex: 4,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/calculators_main");
+                      Navigator.pushNamed(
+                          context, MainNavigationRouteNames.calculatorsMain);
                     },
                     child: Column(
                       children: [
